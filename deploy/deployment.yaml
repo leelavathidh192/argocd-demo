@@ -12,9 +12,9 @@ spec:
       labels:
         app: my-app
     spec:
-      parameters:
-        - name: build-version
-          value: 2.3.4
+      preSync:
+        exec:
+          command: ["/bin/bash", "-c", "kubectl annotate app my-app-deployment annotation-key=$(kubectl get app my-app-deployment -ojsonpath='{.metadata.annotations.annotation-key}' | awk '{print $1 + 1}')"]
       containers:
         - name: my-app-container
           image: my-app-image:latest
