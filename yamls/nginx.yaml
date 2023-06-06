@@ -17,6 +17,3 @@ spec:
       containers:
       - image: nginx
         name: nginx
-        env:
-          - name: version
-            value: 2.0  
