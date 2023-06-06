@@ -6,9 +6,6 @@ metadata:
   name: nginx
 spec:
   replicas: 2
-  env:
-    - name: version
-      value: 2.0  
   selector:
     matchLabels:
       app: nginx
@@ -20,3 +17,6 @@ spec:
       containers:
       - image: nginx
         name: nginx
+        env:
+          - name: version
+            value: 2.0  
