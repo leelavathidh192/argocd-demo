@@ -6,6 +6,27 @@ metadata:
   name: nginx
 spec:
   replicas: 2
+  preSync:
+    hooks:
+      - name: upgrade-build-version
+        hookType: PreSync
+        manifest: |
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: upgrade-build-version-script
+          data:
+            script.sh: |
+              #!/bin/bash
+
+              # Retrieve the current build version annotation
+              current_version=$(kubectl -n argocd get app argo-demo -ojsonpath='{.metadata.annotations.build-version}')
+
+              # Increment the build version (or apply any desired logic)
+              new_version=$((current_version + 1))
+
+              # Update the annotation with the new build version
+              kubectl -n argocd annotate app argo-demo build-version=$new_version --overwrite
   selector:
     matchLabels:
       app: nginx
