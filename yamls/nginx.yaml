@@ -19,4 +19,4 @@ spec:
         name: nginx
       parameters:
       - name: BUILD_VERSION
-        value: '2.0.0'
+        value: 3.2.1
