@@ -17,6 +17,3 @@ spec:
       containers:
       - image: nginx
         name: nginx
-      parameters:
-      - name: BUILD_VERSION
-        value: 3.2.1
