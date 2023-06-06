@@ -12,6 +12,9 @@ spec:
       labels:
         app: my-app
     spec:
+      parameters:
+        - name: build-version
+          value: 2.3.4
       containers:
         - name: my-app-container
           image: my-app-image:latest
